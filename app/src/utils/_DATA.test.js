@@ -1,4 +1,4 @@
-import { _saveQuestion, _saveQuestionAnswer } from "./PollsAPI";
+import { _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
 describe("_saveQuestion", () => {
   it ("returns the saved question if correct data is passed", async() => {
