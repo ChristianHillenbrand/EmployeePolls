@@ -1,5 +1,6 @@
 button {
   padding: 7px;
+  cursor: pointer;
 }
 
 input {
@@ -15,7 +16,6 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   padding-top: 50px;
   gap: 10px;
 }
@@ -60,7 +60,7 @@ input {
   padding-top: 50px;
 }
 
-.polllist-container {
+.polllist-with-selector {
   display: flex;
   flex-direction: column;
   width: 60%;
@@ -88,4 +88,32 @@ input {
 
 .polls-selector {
   align-self: flex-end;
+}
+
+.poll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  gap: 30px;
+}
+
+.poll-options {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.poll-option {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.chosen-option {
+  background-color: #d4edda;
+}
+
+.other-option {
+  background-color: #f2f2f2;
 }

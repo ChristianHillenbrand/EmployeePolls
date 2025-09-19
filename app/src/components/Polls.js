@@ -9,6 +9,7 @@ function ToggleSelector(selector) {
     return "Answered";
   }
 }
+
 const Polls = ({answeredQuestions, unansweredQuestions}) => {
   const [selector, setSelector] = useState("Unanswered");
 
@@ -19,7 +20,7 @@ const Polls = ({answeredQuestions, unansweredQuestions}) => {
   return (
     <div className="polls">
       <h1>{selector} Polls</h1>
-      <div className="polllist-container">
+      <div className="polllist-with-selector">
         <PollList questions={selector === "Answered" ? answeredQuestions : unansweredQuestions}/>
         <button className="polls-selector" onClick={toggleSelection}>Show {ToggleSelector(selector)} Polls</button>
       </div>
@@ -27,7 +28,7 @@ const Polls = ({answeredQuestions, unansweredQuestions}) => {
   );
 }
 
-const mapStateToProps = ({authedUser, users, questions}) => {
+function mapStateToProps({authedUser, users, questions}) {
   const ids = Object.keys(users[authedUser].answers);
   const answeredQuestions = Object.values(questions)
     .filter(question => ids.includes(question.id))

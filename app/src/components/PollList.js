@@ -1,12 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 const PollListItem = ({question}) => {
-  const handleClick = () => {
-  }
+  const navigate = useNavigate();
   
   const date = new Date(question.timestamp);
   const timestamp = date.toLocaleString();
 
   return (
-    <li className="polllist-item clickable" onClick={handleClick}>
+    <li className="polllist-item clickable" key={question.id} onClick={() => {navigate("/questions/" + question.id)}}>
       <label className="clickable">{question.author}</label>
       <label className="clickable">{timestamp}</label>
     </li>

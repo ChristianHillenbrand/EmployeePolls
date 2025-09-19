@@ -48,7 +48,7 @@ const Login = ({dispatch, userList}) => {
   );
 };
 
-const mapStateToProps = ({users}) => {
+function mapStateToProps({users}) {
   const userList = Object.values(users).map(({id, password}) => ({
     id, password
   }));
