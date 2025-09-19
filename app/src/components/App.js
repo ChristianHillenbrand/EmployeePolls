@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
 import TitleBar from "./TitleBar";
+import Polls from "./Polls";
 
 const App = ({dispatch, authedUser}) => {
   useEffect(() => {
@@ -10,7 +11,12 @@ const App = ({dispatch, authedUser}) => {
   });
 
   if (authedUser) {
-    return <TitleBar/>
+    return (
+      <div className="app">
+        <TitleBar/>
+        <Polls/>
+      </div>
+    );
   } else {
     return <Login/>;
   }

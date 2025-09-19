@@ -1,9 +1,14 @@
-.login-container {
+button {
+  padding: 7px;
+}
+
+.login {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
+  padding-top: 50px;
+  gap: 10px;
 }
 
 .login-form {
@@ -19,7 +24,7 @@
   font-weight: bold;
 }
 
-.title-bar-container {
+.title-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,14 +32,56 @@
   border-bottom: 2px solid #ccc;
 }
 
-.nav-container {
+.nav-bar {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.logout-container {
+.logout-bar {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.polls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.polllist-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.polllist {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style-type: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  gap: 10px;
+}
+
+.polllist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  gap: 10px;
+}
+
+.polllist-item:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.polls-selector {
+  align-self: flex-end;
 }

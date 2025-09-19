@@ -36,7 +36,7 @@ const Login = ({dispatch, userList}) => {
   }
 
   return (
-    <div className="login-container">
+    <div className="login">
       <h1>Employee Polls</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Username" value={username} onChange={handleUsername}/>
