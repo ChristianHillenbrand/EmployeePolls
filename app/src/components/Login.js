@@ -48,11 +48,11 @@ const Login = ({dispatch, userList}) => {
   );
 };
 
-const mapStateToProps = ({dispatch, users}) => {
+const mapStateToProps = ({users}) => {
   const userList = Object.values(users).map(({id, password}) => ({
     id, password
   }));
-  return {dispatch, userList};
+  return {userList};
 };
 
 export default connect(mapStateToProps)(Login);

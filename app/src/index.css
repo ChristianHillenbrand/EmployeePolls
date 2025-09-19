@@ -18,3 +18,23 @@
   color: red;
   font-weight: bold;
 }
+
+.title-bar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
