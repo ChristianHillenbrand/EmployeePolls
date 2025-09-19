@@ -2,6 +2,15 @@ button {
   padding: 7px;
 }
 
+input {
+  padding: 7px;
+}
+
+.clickable:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
 .login {
   display: flex;
   flex-direction: column;
@@ -75,11 +84,6 @@ button {
   border-radius: 8px;
   padding: 10px;
   gap: 10px;
-}
-
-.polllist-item:hover {
-  background-color: #e0e0e0;
-  cursor: pointer;
 }
 
 .polls-selector {

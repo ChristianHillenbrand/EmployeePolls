@@ -6,9 +6,9 @@ const PollListItem = ({question}) => {
   const timestamp = date.toLocaleString();
 
   return (
-    <li className="polllist-item" onClick={handleClick}>
-      <label>{question.author}</label>
-      <label>{timestamp}</label>
+    <li className="polllist-item clickable" onClick={handleClick}>
+      <label className="clickable">{question.author}</label>
+      <label className="clickable">{timestamp}</label>
     </li>
   );
 };
