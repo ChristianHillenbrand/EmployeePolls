@@ -1,37 +1,72 @@
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-function GetClassName(option, answer) {
-  let className = "poll-option";
-  if (!answer) {
-    className += " clickable";
-  } else if (answer === option) {
-    className += " chosen-option";
-  } else {
-    className += " other-option";
-  }
-  return className;
+const withRouterParams = (Component) => {
+  const ComponentWithRouterParams = (props) => {
+    let routerParams = useParams();
+    return <Component {...props} routerParams={routerParams} />;
+  };
+
+  return ComponentWithRouterParams;
+};
+
+const PollOption = ({text, votes, percentage, state, onVote}) => {
+  const className = state === "chosen" ? "poll-option-chosen" : "";
+  const disabled = state !== "open";
+
+  return (
+    <div className="poll-option">
+      <button className={className} onClick={onVote} disabled={disabled}>{text}</button>
+      {
+        state !== "open" && 
+          <label>{votes} {votes === 1 ? "vote" : "votes"} / {percentage} %</label>
+      }
+    </div>
+  );
 }
 
-const Poll = ({ questions, answers }) => {
-  const { id } = useParams();
-  const question = questions[id]
-  const answer = id in answers ? answers[id] : null;
+const Poll = ({ authedUser, qid, avatarURL, optionOne, optionTwo }) => {
+  function handleVote(answer) {
+  }
 
   return (
     <div className="poll">
-      <h1>Would You Rather</h1>
+      <div className="poll-title">
+        <img className="avatar avatar-large" src={avatarURL} alt="Avatar"/>
+        <h1>Would You Rather</h1>
+      </div>
       <div className="poll-options">
-        <button className={GetClassName("optionOne", answer)}>{question.optionOne.text}</button>
-        <button className={GetClassName("optionTwo", answer)}>{question.optionTwo.text}</button>
+        <PollOption {...optionOne} onVote={() => {handleVote("optionOne")}}/>
+        <PollOption {...optionTwo} onVote={() => {handleVote("optionTwo")}}/>
       </div>
     </div>
   );
 }
 
-function mapStateToProps({authedUser, users, questions}) {
-  const answers = users[authedUser].answers;
-  return {questions, answers};
+function formatOption(option, answer, numVotes) {
+  return {
+    text: option.text,
+    votes: option.votes.length,
+    percentage: Math.round(option.votes.length / numVotes * 100),
+    state: answer.length === 0 ? "open" : (answer === option.text ? "chosen" : "rejected")
+  };
 }
 
-export default connect(mapStateToProps)(Poll);
+function mapStateToProps({authedUser, users, questions}, props) {
+  const question = questions[props.routerParams.qid];
+  const answers = users[authedUser].answers;
+  const answer = question.id in answers ? question[answers[question.id]].text : "";
+  const numVotes = question.optionOne.votes.length + 
+    question.optionTwo.votes.length;
+
+  return {
+    authedUser,
+    qid: question.id,
+    avatarURL: users[question.author].avatarURL,
+    optionOne: formatOption(question.optionOne, answer, numVotes),
+    optionTwo: formatOption(question.optionTwo, answer, numVotes),
+    answer: question.id in answers ? answers[question.id] : ""
+  };
+}
+
+export default withRouterParams(connect(mapStateToProps)(Poll));

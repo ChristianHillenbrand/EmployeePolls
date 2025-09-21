@@ -2,7 +2,7 @@ import { useState } from "react"
 import { connect } from "react-redux";
 import PollList from "./PollList";
 
-function ToggleSelector(selector) {
+function toggleSelector(selector) {
   if (selector === "Answered") {
     return "Unanswered";
   } else {
@@ -14,7 +14,7 @@ const Polls = ({answeredQuestions, unansweredQuestions}) => {
   const [selector, setSelector] = useState("Unanswered");
 
   function toggleSelection() {
-    setSelector(ToggleSelector(selector));
+    setSelector(toggleSelector(selector));
   }
 
   return (
@@ -22,7 +22,7 @@ const Polls = ({answeredQuestions, unansweredQuestions}) => {
       <h1>{selector} Polls</h1>
       <div className="polllist-with-selector">
         <PollList questions={selector === "Answered" ? answeredQuestions : unansweredQuestions}/>
-        <button className="polls-selector" onClick={toggleSelection}>Show {ToggleSelector(selector)} Polls</button>
+        <button className="polls-selector" onClick={toggleSelection}>Show {toggleSelector(selector)} Polls</button>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 
-const TitleBar = ({dispatch, authedUser}) => {
+const TitleBar = ({dispatch, authedUser, avatarURL}) => {
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -17,15 +17,19 @@ const TitleBar = ({dispatch, authedUser}) => {
         <button onClick={() => navigate("/add")}>New</button>
       </div>
       <div className="logout-bar">
-        <label>User: {authedUser}</label>
+        <div className="user">
+          <img className="avatar avatar-small" src={avatarURL} alt="Avatar"/>
+          <label>{authedUser}</label>
+        </div>
         <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({authedUser}) => {
-  return {authedUser};
+const mapStateToProps = ({authedUser, users}) => {
+  const avatarURL = users[authedUser].avatarURL;
+  return {authedUser, avatarURL};
 }
 
 export default connect(mapStateToProps)(TitleBar);

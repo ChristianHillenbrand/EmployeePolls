@@ -31,7 +31,7 @@ const App = ({dispatch, authedUser}) => {
     <Routes>
       <Route path="/" element={<Layout/>}>
         <Route index element={<Polls />} />
-        <Route path="questions/:id" element={<Poll/>}/>
+        <Route path="questions/:qid" element={<Poll/>}/>
         <Route path="leaderboard" element={<Leaderboard/>}/>
         <Route path="add" element={<New/>}/>
       </Route>
