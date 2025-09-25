@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
+import NotFound from "./NotFound";
 import TitleBar from "./TitleBar";
 import Polls from "./Polls";
 import Poll from "./Poll";
@@ -34,6 +35,7 @@ const App = ({dispatch, authedUser}) => {
         <Route path="questions/:qid" element={<Poll/>}/>
         <Route path="leaderboard" element={<Leaderboard/>}/>
         <Route path="add" element={<New/>}/>
+        <Route path="*" element={<NotFound/>}></Route>
       </Route>
     </Routes>
   );

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleAnswerQuestion } from "../actions/questions";
+import NotFound from "./NotFound";
 
 const withRouterParams = (Component) => {
   const ComponentWithRouterParams = (props) => {
@@ -27,7 +28,11 @@ const PollOption = ({text, votes, percentage, state, onVote}) => {
   );
 }
 
-const Poll = ({ dispatch, authedUser, qid, avatarURL, optionOne, optionTwo }) => {
+const Poll = ({ dispatch, notFound, authedUser, qid, avatarURL, optionOne, optionTwo }) => {
+  if (notFound) {
+    return <NotFound/>;
+  }
+  
   function handleVote(answer) {
     dispatch(handleAnswerQuestion({ authedUser, qid, answer }));
   }
@@ -59,6 +64,10 @@ function formatOption(question, option, answer) {
 }
 
 function mapStateToProps({authedUser, users, questions}, props) {
+  if (!(props.routerParams.qid in questions)) {
+    return {notFound: true};
+  }
+  
   const question = questions[props.routerParams.qid];
   const answer = question.id in users[authedUser].answers ? 
     users[authedUser].answers[question.id] : ""; 
