@@ -18,9 +18,11 @@ const PollList = ({questions}) => {
   return (
     <ul className="polllist">
       {
-        questions.map(question => 
-          <PollListItem question={question}/>
-        )
+        questions.length ? 
+          questions.map(question => 
+            <PollListItem question={question}/>
+          ) :
+        <li>No polls available.</li>
       }
     </ul>
   );
