@@ -12,12 +12,13 @@ const withRouterParams = (Component) => {
 };
 
 const PollOption = ({text, votes, percentage, state, onVote}) => {
-  const className = state === "chosen" ? "poll-option-chosen" : "";
-  const disabled = state !== "open";
-
   return (
     <div className="poll-option">
-      <button className={className} onClick={onVote} disabled={disabled}>{text}</button>
+      <button 
+        className={state === "chosen" ? "poll-option-chosen" : ""} 
+        onClick={onVote} 
+        disabled={state !== "open"}
+      >{text}</button>
       {
         state !== "open" && 
           <label>{votes} {votes === 1 ? "vote" : "votes"} / {percentage} %</label>
@@ -45,7 +46,10 @@ const Poll = ({ dispatch, authedUser, qid, avatarURL, optionOne, optionTwo }) =>
   );
 }
 
-function formatOption(question, option, answer, totalVotes) {
+function formatOption(question, option, answer) {
+  const totalVotes = question.optionOne.votes.length + 
+    question.optionTwo.votes.length;
+
   return {
     text: question[option].text,
     votes: question[option].votes.length,
@@ -56,18 +60,15 @@ function formatOption(question, option, answer, totalVotes) {
 
 function mapStateToProps({authedUser, users, questions}, props) {
   const question = questions[props.routerParams.qid];
-
-  const user = users[authedUser];
-  const answer = question.id in user.answers ? user.answers[question.id] : ""; 
-  const totalVotes = question.optionOne.votes.length + 
-    question.optionTwo.votes.length;
+  const answer = question.id in users[authedUser].answers ? 
+    users[authedUser].answers[question.id] : ""; 
 
   return {
     authedUser,
     qid: question.id,
     avatarURL: users[question.author].avatarURL,
-    optionOne: formatOption(question, "optionOne", answer, totalVotes),
-    optionTwo: formatOption(question, "optionTwo", answer, totalVotes)
+    optionOne: formatOption(question, "optionOne", answer),
+    optionTwo: formatOption(question, "optionTwo", answer)
   };
 }
 
