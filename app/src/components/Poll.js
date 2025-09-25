@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import { handleAnswerQuestion } from "../actions/questions";
 
 const withRouterParams = (Component) => {
   const ComponentWithRouterParams = (props) => {
@@ -25,8 +26,9 @@ const PollOption = ({text, votes, percentage, state, onVote}) => {
   );
 }
 
-const Poll = ({ authedUser, qid, avatarURL, optionOne, optionTwo }) => {
+const Poll = ({ dispatch, authedUser, qid, avatarURL, optionOne, optionTwo }) => {
   function handleVote(answer) {
+    dispatch(handleAnswerQuestion({ authedUser, qid, answer }));
   }
 
   return (
@@ -43,29 +45,29 @@ const Poll = ({ authedUser, qid, avatarURL, optionOne, optionTwo }) => {
   );
 }
 
-function formatOption(option, answer, numVotes) {
+function formatOption(question, option, answer, totalVotes) {
   return {
-    text: option.text,
-    votes: option.votes.length,
-    percentage: Math.round(option.votes.length / numVotes * 100),
-    state: answer.length === 0 ? "open" : (answer === option.text ? "chosen" : "rejected")
+    text: question[option].text,
+    votes: question[option].votes.length,
+    percentage: Math.round(question[option].votes.length / totalVotes * 100),
+    state: !answer ? "open" : (option === answer ? "chosen" : "rejected")
   };
 }
 
 function mapStateToProps({authedUser, users, questions}, props) {
   const question = questions[props.routerParams.qid];
-  const answers = users[authedUser].answers;
-  const answer = question.id in answers ? question[answers[question.id]].text : "";
-  const numVotes = question.optionOne.votes.length + 
+
+  const user = users[authedUser];
+  const answer = question.id in user.answers ? user.answers[question.id] : ""; 
+  const totalVotes = question.optionOne.votes.length + 
     question.optionTwo.votes.length;
 
   return {
     authedUser,
     qid: question.id,
     avatarURL: users[question.author].avatarURL,
-    optionOne: formatOption(question.optionOne, answer, numVotes),
-    optionTwo: formatOption(question.optionTwo, answer, numVotes),
-    answer: question.id in answers ? answers[question.id] : ""
+    optionOne: formatOption(question, "optionOne", answer, totalVotes),
+    optionTwo: formatOption(question, "optionTwo", answer, totalVotes)
   };
 }
 
