@@ -22,7 +22,7 @@ const PollOption = ({text, votes, percentage, state, onVote}) => {
       >{text}</button>
       {
         state !== "open" && 
-          <label>{votes} {votes === 1 ? "vote" : "votes"} / {percentage} %</label>
+          <span>{votes} {votes === 1 ? "vote" : "votes"} / {percentage} %</span>
       }
     </div>
   );

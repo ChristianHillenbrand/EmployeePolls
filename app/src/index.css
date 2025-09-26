@@ -71,6 +71,7 @@ input {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  gap: 30px;
 }
 
 .polllist-with-selector {
@@ -160,21 +161,16 @@ input {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  gap: 30px;
 }
 
-.leaderboardlist {
-  display: flex;
-  flex-direction: column;
-  padding: 0px;
-  gap: 10px;
+.leaderboardtable {
+  width: 60%;
 }
 
-.score {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.leaderboardtable th,
+.leaderboardtable td {
   border: 1px solid #ccc;
-  border-radius: 8px;
+  text-align: left;
   padding: 10px;
-  gap: 10px;
 }

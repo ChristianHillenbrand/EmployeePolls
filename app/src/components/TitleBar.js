@@ -19,7 +19,7 @@ const TitleBar = ({dispatch, authedUser, avatarURL}) => {
       <div className="logout-bar">
         <div className="user">
           <img className="avatar avatar-small" src={avatarURL} alt="Avatar"/>
-          <label>{authedUser}</label>
+          <span>{authedUser}</span>
         </div>
         <button onClick={handleLogout}>Logout</button>
       </div>

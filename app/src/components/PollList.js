@@ -9,8 +9,8 @@ const PollListItem = ({question}) => {
   return (
     <li key={question.id}>
       <button className="polllist-item" onClick={() => {navigate("/questions/" + question.id)}}>
-        <label>{question.author}</label>
-        <label>{timestamp}</label>
+        <span>{question.author}</span>
+        <span>{timestamp}</span>
       </button>
     </li>
   );

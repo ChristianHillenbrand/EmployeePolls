@@ -2,14 +2,14 @@ import { connect } from "react-redux";
 
 const Score = ({name, avatarURL, questions, answers}) => {
   return (
-    <li className="score" key={name}>
-      <div className="user">
+    <tr key={name}>
+      <td className="user">
         <img className="avatar avatar-small" src={avatarURL} alt="Avatar"/>
-        <label>{name}</label>
-      </div>
-      <label>Questions asked: {questions}</label>
-      <label>Questions answered: {answers}</label>
-    </li>
+        <span>{name}</span>
+      </td>
+      <td>{questions}</td>
+      <td>{answers}</td>
+    </tr>
   )
 }
 
@@ -17,11 +17,20 @@ const Leaderboard = ({scores}) => {
   return (
     <div className="leaderboard">
       <h1>Leaderboard</h1>
-      <ul className="leaderboardlist">
-        {
-          scores.map(score => <Score {...score}/>)
-        }
-      </ul>
+      <table className="leaderboardtable">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Questions Asked</th>
+            <th>Questions Answered</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            scores.map(score => <Score {...score}/>)
+          }
+        </tbody>
+      </table>
     </div>
   );
 }
