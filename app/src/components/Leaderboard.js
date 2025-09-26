@@ -17,7 +17,7 @@ const Leaderboard = ({scores}) => {
   return (
     <div className="leaderboard">
       <h1>Leaderboard</h1>
-      <table className="leaderboardtable">
+      <table className="leaderboard-table">
         <thead>
           <tr>
             <th>User</th>

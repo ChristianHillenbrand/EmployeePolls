@@ -8,7 +8,7 @@ const PollListItem = ({question}) => {
 
   return (
     <li key={question.id}>
-      <button className="polllist-item" onClick={() => {navigate("/questions/" + question.id)}}>
+      <button className="poll-list-item" onClick={() => {navigate("/questions/" + question.id)}}>
         <span>{question.author}</span>
         <span>{timestamp}</span>
       </button>
@@ -18,7 +18,7 @@ const PollListItem = ({question}) => {
 
 const PollList = ({questions}) => {
   return (
-    <ul className="polllist">
+    <ul className="poll-list">
       {
         questions.length ? 
           questions.map(question => 
