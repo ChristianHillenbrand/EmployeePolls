@@ -7,9 +7,11 @@ const PollListItem = ({question}) => {
   const timestamp = date.toLocaleString();
 
   return (
-    <li className="polllist-item clickable" key={question.id} onClick={() => {navigate("/questions/" + question.id)}}>
-      <label className="clickable">{question.author}</label>
-      <label className="clickable">{timestamp}</label>
+    <li key={question.id}>
+      <button className="polllist-item" onClick={() => {navigate("/questions/" + question.id)}}>
+        <label>{question.author}</label>
+        <label>{timestamp}</label>
+      </button>
     </li>
   );
 };
