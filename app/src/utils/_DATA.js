@@ -45,7 +45,7 @@ let users = {
     },
     questions: [],
   }
-}
+};
 
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
@@ -126,22 +126,22 @@ let questions = {
       text: 'deploy to production once every month'
     }
   },
-}
+};
 
 function generateUID () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
 
 export function _getUsers () {
   return new Promise((resolve) => {
     setTimeout(() => resolve({...users}), 1000)
-  })
+  });
 }
 
 export function _getQuestions () {
   return new Promise((resolve) => {
     setTimeout(() => resolve({...questions}), 1000)
-  })
+  });
 }
 
 function formatQuestion ({ optionOneText, optionTwoText, author }) {
@@ -157,7 +157,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
       votes: [],
       text: optionTwoText,
     }
-  }
+  };
 }
 
 export function _saveQuestion (question) {
@@ -168,12 +168,23 @@ export function _saveQuestion (question) {
 
     const formattedQuestion = formatQuestion(question)
     setTimeout(() => {
+      users = {
+        ...users,
+        [question.author] : {
+          ...users[question.author],
+          questions: [
+            ...users[question.author].questions,
+            question.id
+          ]
+        }
+      };
+
       questions = {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
-      }
+      };
 
-      resolve(formattedQuestion)
+      resolve(formattedQuestion);
     }, 1000)
   })
 }
@@ -194,7 +205,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
             [qid]: answer
           }
         }
-      }
+      };
 
       questions = {
         ...questions,
@@ -205,9 +216,9 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
             votes: questions[qid][answer].votes.concat([authedUser])
           }
         }
-      }
+      };
 
-      resolve(true)
+      resolve(true);
     }, 500)
   })
 }
