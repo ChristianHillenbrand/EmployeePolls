@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 
-const Score = ({name, avatarURL, questions, answers}) => {
+const Score = ({id, name, avatarURL, questions, answers}) => {
   return (
-    <tr key={name}>
+    <tr key={id}>
       <td className="user">
         <img className="avatar avatar-small" src={avatarURL} alt="Avatar"/>
-        <span>{name}</span>
+        <div className="name-and-id">
+          <span className="name">{name}</span>
+          <span className="id">{id}</span>
+        </div>
       </td>
       <td>{questions}</td>
       <td>{answers}</td>
@@ -39,6 +42,7 @@ function mapStateToProps({users}) {
   return {
     scores: 
       Object.values(users).map(user => ({
+        id: user.id,
         name: user.name,
         avatarURL: user.avatarURL,
         answers: Object.keys(user.answers).length,

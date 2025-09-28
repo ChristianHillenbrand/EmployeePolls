@@ -132,6 +132,19 @@ input {
   height: 80px;
 }
 
+.name-and-id {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.id {
+  color: #ccc
+}
+
 .poll-title {
   display: flex;
   flex-direction: row;

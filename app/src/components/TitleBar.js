@@ -7,6 +7,7 @@ const TitleBar = ({dispatch, authedUser, avatarURL}) => {
 
   function handleLogout() {
     dispatch(setAuthedUser(""));
+    navigate("/");
   }
 
   return (
