@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 const Score = ({id, name, avatarURL, questions, answers}) => {
   return (
-    <tr key={id}>
+    <tr>
       <td className="user">
         <img className="avatar avatar-small" src={avatarURL} alt="Avatar"/>
         <div className="name-and-id">
@@ -30,7 +30,7 @@ const Leaderboard = ({scores}) => {
         </thead>
         <tbody>
           {
-            scores.map(score => <Score {...score}/>)
+            scores.map(score => <Score key={score.id} {...score}/>)
           }
         </tbody>
       </table>
