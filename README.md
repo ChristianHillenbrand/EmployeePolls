@@ -8,3 +8,7 @@ To run the application go to the app directory and
 
 - install all project dependencies with `npm install`
 - start the development server with `npm start`
+
+## Running Tests
+
+To run the unit tests go the app directory and enter `npm test`.
