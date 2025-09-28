@@ -5,7 +5,7 @@ describe("_saveQuestion", () => {
     const question = {
       optionOneText: "This is option one.",
       optionTwoText: "This is option two.",
-      author: "I am the author"
+      author: "sarahedo"
     };
 
     const result = await _saveQuestion(question);
