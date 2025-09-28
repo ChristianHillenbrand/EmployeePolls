@@ -5,7 +5,7 @@ import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
 import NotFound from "./NotFound";
 import TitleBar from "./TitleBar";
-import Polls from "./Polls";
+import Home from "./Home";
 import Poll from "./Poll";
 import Leaderboard from "./Leaderboard";
 import New from "./New";
@@ -31,7 +31,7 @@ const App = ({dispatch, authedUser}) => {
   return (
     <Routes>
       <Route path="/" element={<Layout/>}>
-        <Route index element={<Polls />} />
+        <Route index element={<Home/>} />
         <Route path="questions/:qid" element={<Poll/>}/>
         <Route path="leaderboard" element={<Leaderboard/>}/>
         <Route path="add" element={<New/>}/>

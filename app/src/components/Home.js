@@ -10,7 +10,7 @@ function toggleSelector(selector) {
   }
 }
 
-const Polls = ({answeredQuestions, unansweredQuestions}) => {
+const Home = ({answeredQuestions, unansweredQuestions}) => {
   const [selector, setSelector] = useState("Unanswered");
 
   function toggleSelection() {
@@ -18,7 +18,7 @@ const Polls = ({answeredQuestions, unansweredQuestions}) => {
   }
 
   return (
-    <div className="polls">
+    <div className="home">
       <h1>{selector} Polls</h1>
       <div className="polllist-with-selector">
         <PollList questions={selector === "Answered" ? answeredQuestions : unansweredQuestions}/>
@@ -39,4 +39,4 @@ function mapStateToProps({authedUser, users, questions}) {
   return {answeredQuestions, unansweredQuestions};
 }
 
-export default connect(mapStateToProps)(Polls);
+export default connect(mapStateToProps)(Home);

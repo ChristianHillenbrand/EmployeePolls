@@ -13,7 +13,7 @@ const TitleBar = ({dispatch, authedUser, avatarURL}) => {
   return (
     <div className="title-bar">
       <div className="nav-bar">
-        <button onClick={() => navigate("/")}>Polls</button>
+        <button onClick={() => navigate("/")}>Home</button>
         <button onClick={() => navigate("/leaderboard")}>Leaderboard</button>
         <button onClick={() => navigate("/add")}>New</button>
       </div>
