@@ -39,7 +39,7 @@ let users = {
     id: 'zoshikanlu',
     password:'pass246',
     name: 'Zenobia Oshikanlu',
-    avatarURL: 'https://opwiki.org/images/thumb/RuffyNew.jpg/180px-RuffyNew.jpg',
+    avatarURL: 'https://opwiki.org/images/RobinNew2.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
     },
