@@ -1,26 +1,23 @@
-import { act, render, within } from "@testing-library/react";
+import { render, within } from "@testing-library/react";
 import "@testing-library/jest-dom"
 
-import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from '../store.js'
 import { handleInitialData } from "../actions/shared.js";
 import Leaderboard from '../components/Leaderboard.js';
 
-export function renderWithRouterAndProvider(component) {
+export function renderWithProvider(component) {
   return render(
-    <MemoryRouter>
-      <Provider store={store}>
-        {component}
-      </Provider>
-    </MemoryRouter>
+    <Provider store={store}>
+      {component}
+    </Provider>
   );
 };
 
 describe("Leaderboard", () => {
   it ("will contain one table with the correct header entries", () => {
-    const component = renderWithRouterAndProvider(<Leaderboard/>);
+    const component = renderWithProvider(<Leaderboard/>);
 
     const tables = component.getAllByRole("table");
     expect(tables).toHaveLength(1);
@@ -35,11 +32,8 @@ describe("Leaderboard", () => {
   });
 
   it ("will show the correct username, number of questions and number of answers", async () => {
-    const component = renderWithRouterAndProvider(<Leaderboard/>);
-
-    await act(async () => {
-      await store.dispatch(handleInitialData());
-    });
+    await store.dispatch(handleInitialData());
+    const component = renderWithProvider(<Leaderboard/>);
 
     const users = store.getState().users;
     const scores = component.getAllByTestId("score");
