@@ -2,16 +2,16 @@ import { connect } from "react-redux";
 
 const Score = ({id, name, avatarURL, questions, answers}) => {
   return (
-    <tr>
+    <tr data-testid="score">
       <td className="user">
         <img className="avatar avatar-small" src={avatarURL} alt="Avatar"/>
         <div className="name-and-id">
-          <span className="name">{name}</span>
-          <span className="id">{id}</span>
+          <span className="name" data-testid="name">{name}</span>
+          <span className="id" data-testid="id">{id}</span>
         </div>
       </td>
-      <td>{questions}</td>
-      <td>{answers}</td>
+      <td data-testid="questions">{questions}</td>
+      <td data-testid="answers">{answers}</td>
     </tr>
   )
 }
@@ -45,8 +45,8 @@ function mapStateToProps({users}) {
         id: user.id,
         name: user.name,
         avatarURL: user.avatarURL,
-        answers: Object.keys(user.answers).length,
-        questions: user.questions.length
+        questions: user.questions.length,
+        answers: Object.keys(user.answers).length
       })).sort((a, b) => (b.answers + b.questions) - (a.answers + a.questions))
   };
 }
