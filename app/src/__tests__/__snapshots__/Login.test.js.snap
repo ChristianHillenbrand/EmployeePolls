@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App will match snapshot 1`] = `
+exports[`Login will match snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -15,16 +15,19 @@ Object {
           class="login-form"
         >
           <input
+            data-testid="username-input"
             placeholder="Username"
             type="text"
             value=""
           />
           <input
+            data-testid="password-input"
             placeholder="Password"
             type="password"
             value=""
           />
           <button
+            data-testid="submit-button"
             disabled=""
             type="submit"
           >
@@ -45,16 +48,19 @@ Object {
         class="login-form"
       >
         <input
+          data-testid="username-input"
           placeholder="Username"
           type="text"
           value=""
         />
         <input
+          data-testid="password-input"
           placeholder="Password"
           type="password"
           value=""
         />
         <button
+          data-testid="submit-button"
           disabled=""
           type="submit"
         >

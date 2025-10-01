@@ -39,11 +39,11 @@ const Login = ({dispatch, userList}) => {
     <div className="login">
       <h1>Employee Polls</h1>
       <form className="login-form" onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={handleUsername}/>
-        <input type="password" placeholder="Password" value={password} onChange={handlePassword}/>
-        <button type="submit" disabled={username === "" || password === ""}>Login</button>
+        <input data-testid="username-input" type="text" placeholder="Username" value={username} onChange={handleUsername}/>
+        <input data-testid="password-input" type="password" placeholder="Password" value={password} onChange={handlePassword}/>
+        <button data-testid="submit-button" type="submit" disabled={username === "" || password === ""}>Login</button>
       </form>
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className="error-message" data-testid="error-message">{error}</p>}
     </div>
   );
 };
